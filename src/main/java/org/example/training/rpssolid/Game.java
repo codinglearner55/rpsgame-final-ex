@@ -1,9 +1,10 @@
 package org.example.training.rpssolid;
 
-public interface Game {
-    public void play();
+import java.util.Scanner;
 
-
-    public Result getResult();
+public abstract class Game {
+    protected static Scanner user_input;
+    public abstract GameStatus play(Player player1, Player player2,GameLogic gameLogic
+    );
 
 }
