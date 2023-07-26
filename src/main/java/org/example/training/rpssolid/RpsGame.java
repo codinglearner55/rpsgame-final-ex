@@ -10,8 +10,15 @@ public class RpsGame extends Game {
 
     private static EndGameStatus endGameStatus;
 
+    private GameLogic gameLogic;
+
     public RpsGame () {
         endGameStatus = new EndGameStatus();
+    }
+
+    public RpsGame (GameLogic gameLogic) {
+        endGameStatus = new EndGameStatus();
+        this.gameLogic = gameLogic;
     }
 
     public void getPlayerName(Player player){
@@ -20,7 +27,7 @@ public class RpsGame extends Game {
         player.setPlayerName(user_input.next());
     }
     @Override
-    public EndGameStatus play(Player player1, Player player2, GameLogic gameLogic) {
+    public EndGameStatus play(Player player1, Player player2) {
         System.out.println("The game has started");
 
         if (endGameStatus.getGameState() != GameState.DRAW)
@@ -54,7 +61,7 @@ public class RpsGame extends Game {
             System.out.println("Game is a draw");
             endGameStatus.setGameState(GameState.DRAW);
             // then play again
-            play(player1, player2, gameLogic);
+            play(player1, player2);
         }
 
         gameLogic.getWinner(player1, player2, endGameStatus);
